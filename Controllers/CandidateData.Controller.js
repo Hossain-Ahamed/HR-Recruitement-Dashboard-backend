@@ -1,5 +1,8 @@
 const process = require("process");
-const { candidateCollection, jobCollection } = require("../MongoDB/Collections");
+const {
+  candidateCollection,
+  jobCollection,
+} = require("../MongoDB/Collections");
 const { ObjectId } = require("mongodb");
 const { errorSend } = require("../Shared/Scripts/scripts");
 
@@ -81,17 +84,17 @@ const getAllCandidates = async (req, res) => {
 // count depends on Applicant status & all jobs
 const allJobs_and_applicantCount = async (req, res) => {
   try {
-    const allJobs = await jobCollection.aggregate([
-      
-      { $sort: { "timestamp.posted": -1 } },
-      {
-        $project : {
-          _id : 1,
-          position : 1
-        }
-      }
-    
-  ]).toArray();
+    const allJobs = await jobCollection
+      .aggregate([
+        { $sort: { "timestamp.posted": -1 } },
+        {
+          $project: {
+            _id: 1,
+            position: 1,
+          },
+        },
+      ])
+      .toArray();
     const groupCountedData = await candidateCollection
       .aggregate([
         {
@@ -117,18 +120,19 @@ const allJobs_and_applicantCount = async (req, res) => {
       ...groupCountedData,
     ];
 
-   
-
     res.status(200).send({
-      counts : resultData,
-      allJobs 
+      counts: resultData,
+      allJobs,
     });
   } catch (error) {
     errorSend(res, 500, "Internal server error");
   }
 };
 
+
+
 module.exports = {
   getAllCandidates,
   allJobs_and_applicantCount,
+ 
 };
