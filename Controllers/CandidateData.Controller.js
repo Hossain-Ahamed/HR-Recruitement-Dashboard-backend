@@ -31,10 +31,10 @@ const getAllCandidates = async (req, res) => {
     if (from || to) {
       const duration = {};
       if (from) {
-        duration.$gte = new Date(from);
+        duration.$gte = new Date(from).toISOString();
       }
       if (to) {
-        duration.$lte = new Date(to);
+        duration.$lte = new Date(to).toISOString();
       }
       pipeline.push({ $match: { "timestamps.Application": duration } });
     }
