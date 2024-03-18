@@ -60,9 +60,11 @@ app.use(cors(corsOptions));
 
 //---------------------routes import---------------------------------------------------
 const CandidateDataRoutes = require('./Routes/CandidateData.Routes');
+const DasboardRoutes = require('./Routes/Dashboard.Routes')
 
 // Use the route modules
 app.use('/ayykori', CandidateDataRoutes); // routes for candidate data
+app.use('/ayykori',DasboardRoutes) ; //routes for dashboard data
 
 
 
