@@ -35,8 +35,8 @@ const corsOptions = {
         'http://localhost:5174',
         'http://localhost:5175',
         'http://localhost:3000',
-        'https://hr-recruitement-dashboard-backend.vercel.app/',
-        'https://hr-recruitement-dashboard.vercel.app/'
+        'https://hr-recruitement-dashboard-backend.vercel.app',
+        'https://hr-recruitement-dashboard.vercel.app'
     ],
     credentials: true,
 };
