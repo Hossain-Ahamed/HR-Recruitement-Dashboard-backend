@@ -22,18 +22,6 @@ async function connectToMongoDB() {
     }
 }
 
-// async function getCollectionNames() {
-//     try {
-//         const db = client.db(process.env.DB_NAME);
-//         const collections = await db.listCollections().toArray();
-//         const collectionNames = collections.map((collection) => collection.name);
-//         return collectionNames;
-//     } catch (error) {
-//         console.error('Error fetching collection names from MongoDB:', error);
-//         return [];
-//     }
-// }
-
 // Get the  collection
 function getCollection(collectionName) {
     const db = client.db(process.env.DB_NAME);
