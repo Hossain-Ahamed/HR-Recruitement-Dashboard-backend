@@ -24,7 +24,7 @@ const router = express.Router();
  */
 // router.get('/get-applicant-count-by-job',allJobApplicantCount)    //job & applicant count
 // router.get('/get-applicant-count-by-gender',classifyApplicantByGender)    //classify by gender
-// router.get('/get-applicant-count-by-status',classifyApplicantStatus)    //classify by gender
+router.get('/get-applicant-count-by-status',classifyApplicantStatus)    //classify by status
 
 
 router.get('/dashboard-data',getDashboardData); //all dashboard data

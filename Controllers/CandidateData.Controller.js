@@ -19,7 +19,7 @@ const getAllCandidates = async (req, res) => {
       });
     }
 
-    if (status && status !== "All") {
+    if (status && status !== "all") {
       pipeline.push({
         $match: { status: { $regex: new RegExp(status, "i") } },
       });

@@ -59,9 +59,9 @@ const allJobApplicantCount = async (req, res) => {
 
   
 
-  //classify Applicant By Gender
+  //classify Applicant By status
 
-  // todo : need to add duration 
+
   const classifyApplicantStatus  = async (req, res) => {
     try {
       const data = await candidateCollection
@@ -75,11 +75,14 @@ const allJobApplicantCount = async (req, res) => {
       
         ])
         .toArray();
-      return data;
+    //  res.status(200).send(data);
+     return data;
     } catch (error) {
       errorSend(res, 500, "Internal server error");
     }
   };
+  
+
 
   const getDashboardData = async (req, res) => {
     try {
