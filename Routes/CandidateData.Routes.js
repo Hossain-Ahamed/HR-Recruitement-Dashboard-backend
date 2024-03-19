@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllCandidates, allJobs_and_applicantCount, } = require('../Controllers/CandidateData.Controller');
+const { getAllCandidates, allJobs_and_applicantCount, jobPost, jobDetail, } = require('../Controllers/CandidateData.Controller');
 const router = express.Router();
 
 /**
@@ -8,6 +8,8 @@ const router = express.Router();
 * --------------------------------------------------------------------------------------
 *   .get  '/get-candidates'    ====>  get  candidates according to the query
 *   .get  '/get-counted-applicant-by-stauts'    ====>  count depends on Applicant status & all jobs
+*   .get  '/get-job-detail'    ====>  job detail
+ *  .post  './post-a-job' ==> to post a job
 */
 
 
@@ -15,6 +17,8 @@ const router = express.Router();
 
 router.get('/get-candidates', getAllCandidates); // get  candidates according to the query
 router.get('/get-counted-applicant-by-stauts-and-all-jobs',allJobs_and_applicantCount)    // count depends on Applicant status  & all jobs
+router.get('/get-job-detail',jobDetail)    // count depends on Applicant status  & all jobs
+router.post('/post-a-job',jobPost)  //post job
 
 
 

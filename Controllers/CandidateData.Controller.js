@@ -11,6 +11,35 @@ const getAllCandidates = async (req, res) => {
   try {
     const { role, status, gender, from, to } = req.query;
 
+    // counts of that role
+    const groupCountedData = await candidateCollection
+      .aggregate([
+        {
+          $match: { role: role },
+        },
+        {
+          $group: {
+            _id: "$status",
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            Status: "$_id",
+            count: 1,
+          },
+        },
+      ])
+      .toArray();
+    const resultData = [
+      {
+        Status: "All",
+        count: groupCountedData.reduce((sum, i) => sum + i.count, 0),
+      },
+      ...groupCountedData,
+    ];
+
     const pipeline = [];
 
     if (role) {
@@ -75,7 +104,7 @@ const getAllCandidates = async (req, res) => {
 
     const result = await candidateCollection.aggregate(pipeline).toArray();
 
-    res.status(200).json({ result });
+    res.status(200).json({ result, counts: resultData });
   } catch (error) {
     errorSend(res, 500, "Internal server error");
   }
@@ -95,33 +124,8 @@ const allJobs_and_applicantCount = async (req, res) => {
         },
       ])
       .toArray();
-    const groupCountedData = await candidateCollection
-      .aggregate([
-        {
-          $group: {
-            _id: "$status",
-            count: { $sum: 1 },
-          },
-        },
-        {
-          $project: {
-            _id: 0,
-            Status: "$_id",
-            count: 1,
-          },
-        },
-      ])
-      .toArray();
-    const resultData = [
-      {
-        Status: "All",
-        count: groupCountedData.reduce((sum, i) => sum + i.count, 0),
-      },
-      ...groupCountedData,
-    ];
 
     res.status(200).send({
-      counts: resultData,
       allJobs,
     });
   } catch (error) {
@@ -129,10 +133,36 @@ const allJobs_and_applicantCount = async (req, res) => {
   }
 };
 
+// post a job 
+const jobPost = async (req, res) => {
+  try {
+    // console.log(req.body)
+    const newJob = await jobCollection.insertOne(req.body);
 
+    res.status(200).send(newJob);
+  } catch (error) {
+    errorSend(res, 500, "Internal server error");
+  }
+};
+
+
+// job detail
+const jobDetail = async (req, res) => {
+  try {
+    const JobID = req.query?._id;
+    const job = await jobCollection.findOne({_id : new ObjectId(JobID) });
+    if(!job){
+      return res.status(404).send({message : "no data found"});
+    }
+    res.status(200).send(job);
+  } catch (error) {
+    errorSend(res, 500, "Internal server error");
+  }
+};
 
 module.exports = {
   getAllCandidates,
   allJobs_and_applicantCount,
- 
+  jobPost,
+  jobDetail
 };

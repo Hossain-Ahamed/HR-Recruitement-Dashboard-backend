@@ -11,6 +11,7 @@
         "timestamps": {
             "Application": "2024-03-18T08:00:00Z",
             "Shortlisted": null,
+            "InProcess" : null,
             "Rejected": null,
             "Onhold": null,
             "Finalised": null
@@ -49,6 +50,7 @@
         "timestamps": {
             "Application": "2024-03-17T09:00:00Z",
             "Shortlisted": null,
+            "InProcess" : null,
             "Rejected": null,
             "Onhold": null,
             "Finalised": null
@@ -87,6 +89,7 @@
         "timestamps": {
             "Application": "2024-03-16T14:00:00Z",
             "Shortlisted": null,
+            "InProcess" : null,
             "Rejected": null,
             "Onhold": null,
             "Finalised": null
@@ -106,11 +109,12 @@
         "timestamps": {
             "Application": "2024-03-13T16:00:00Z",
             "Shortlisted": null,
+            "InProcess" : "2024-03-14T16:00:00Z",
             "Rejected": null,
             "Onhold": null,
             "Finalised": null
         },
-        "status": "Appliations",
+        "status": "InProcess",
         "imgURL": "https://i.ibb.co/4fn01jw/pexels-photo-1239291.jpg"
     },
     {
