@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.get('/get-candidates', getAllCandidates); // get  candidates according to the query
 router.get('/get-counted-applicant-by-stauts-and-all-jobs',allJobs_and_applicantCount)    // count depends on Applicant status  & all jobs
-router.get('/get-job-detail',jobDetail)    // count depends on Applicant status  & all jobs
+router.get('/get-job-detail',jobDetail)    // job detail
 router.post('/post-a-job',jobPost)  //post job
 
 
